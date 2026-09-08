@@ -2,9 +2,6 @@ import pandas as pd
 import joblib
 
 
-# =========================
-# LOAD MODEL
-# =========================
 
 model = joblib.load(
     "road_risk_smote_xgboost.pkl"
@@ -15,9 +12,6 @@ preprocessor = joblib.load(
 )
 
 
-# =========================
-# USER INPUT
-# =========================
 
 road = {
     "road_type": "State Highway",
@@ -38,34 +32,24 @@ road = {
 }
 
 
-# =========================
-# CREATE DATAFRAME
-# =========================
+
 
 input_data = pd.DataFrame([road])
 
 
-# =========================
-# PREPROCESS
-# =========================
+
 
 input_processed = preprocessor.transform(
     input_data
 )
 
 
-# =========================
-# PREDICT
-# =========================
 
 prediction = model.predict(
     input_processed
 )
 
 
-# =========================
-# CONVERT LABEL
-# =========================
 
 labels = {
     0: "Safe",
@@ -84,9 +68,7 @@ print("==============================")
 print("Risk Category:", risk_category)
 
 
-# =========================
-# PROBABILITIES
-# =========================
+
 
 probabilities = model.predict_proba(
     input_processed
